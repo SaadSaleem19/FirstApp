@@ -1,24 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import Counter from "./screen/Counter";
+import Todo from "./screen/Todo";
+import { Button, ChakraProvider, Text, Box } from "@chakra-ui/react";
+import { steps } from "framer-motion";
+import Bulb from "./screen/Bulb";
 function App() {
+  const [app, setapp] = useState("");
+
+  const todoApp = () => {
+    setapp("todo");
+  };
+
+  const counter = () => {
+    setapp("counter");
+  };
+  const bulb =()=>{
+    setapp("bulb")
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+     {app =="bulb" && <Bulb/>}
+      {app == "todo" && <Todo />}
+      {app == "counter" && <Counter />}
+      {app != "todo" && app != "counter" && app !="bulb" && (
+         
+         
+        <Box display={"flex"}
+        justifyContent={"center"}>
+          <Text color={"blueviolet"} fontSize={"2.5rem"} fontWeight={"bold"} position={"absolute"} mt={"50px"}>Select App,s </Text>
+          <Button
+            colorScheme="purple"
+            variant="outline"
+            onClick={todoApp}
+            // ml={"10%"}
+            mt={"400px"}
+            width={"200px"}
+            
+
+          >
+            Todo
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="outline"
+            onClick={counter}
+            mt={"400px"}
+            width={"200px"}
+            ml={"15%"}
+          >
+            Counter
+          </Button>
+          <Button
+            colorScheme="purple"
+            variant="outline"
+            onClick={bulb}
+            mt={"400px"}
+            width={"200px"}
+            ml={"15%"}
+          >
+          Bulb
+          </Button>
+        </Box>
+      )}
+    </ChakraProvider>
   );
 }
 
