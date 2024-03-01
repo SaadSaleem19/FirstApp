@@ -6,7 +6,7 @@ const Bulb = () => {
   const [btn, setbtn] = useState("");
   const Buttonon = () => {
     setbtn("buttonon");
-  };
+  }; 
   const Buttonof =() =>{
     setbtn("buttonof")
   }
